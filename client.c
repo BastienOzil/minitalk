@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:25:18 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/08 09:53:33 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/08 10:53:24 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include <stdio.h>
 #include "minitalk.h"
 
-
-void	send_signal(pid_t server_pid, char c)
+void	send_signal(pid_t server_pid, unsigned char c)
 {
 	int	bit;
 
@@ -34,6 +33,7 @@ void	send_signal(pid_t server_pid, char c)
 	}
 }
 
+
 int	main(int argc, char **argv)
 {
 	pid_t	server_pid;
@@ -48,10 +48,9 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (argv[2][i])
 	{
-		send_signal(server_pid, argv[2][i]);
+		send_signal(server_pid, (unsigned char)argv[2][i]);
 		i++;
 	}
 	send_signal(server_pid, '\0');
 	return (0);
 }
-

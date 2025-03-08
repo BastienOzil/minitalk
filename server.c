@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:24:55 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/06 11:56:09 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/08 11:18:53 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@
 
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
-	static int	bit = 0;
-	static char	c = 0;
-
+	static int				bit = 0;
+	static unsigned char	c = 0;
+	
 	(void)context;
 	if (sig == SIGUSR1)
 		c |= (1 << (7 - bit));
+
 	bit++;
+
 	if (bit == 8)
 	{
 		if (c == '\0')
@@ -53,4 +55,3 @@ int	main(void)
 		pause();
 	return (0);
 }
-
